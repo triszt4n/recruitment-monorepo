@@ -1,0 +1,22 @@
+extends ../layouts/main
+
+block styles
+  link(rel="stylesheet" href="https://unpkg.com/easymde@2.15.0/dist/easymde.min.css")
+
+block content
+  h1(class='title') Hibajegy felvétele
+  div(class='flex flex-col items-center justify-center sm:px-4')
+    form(id="ticket-form" class='flex flex-col max-w-6xl p-3 mx-4 my-4 space-y-4 sm:w-full sm:p-6 rounded-2xl bg-default shadow-full')
+      div
+        label(for="roomNumber" class='block text-lg font-bold') Szint
+        select(name="roomNumber", id="roomNumber", class='rounded form-element')
+          each room in ROOMS
+            option(value=`${room}`)= room
+      div
+        label(for="desc" class='text-lg font-bold') Leírás
+        textarea(name="description", id="desc" class='mt-1')
+      button(type="button", id="submitBtn", onclick="addTicket()" class='self-start btn btn-primary animate-hover') Hibajegy felvétele
+
+block scripts
+  script(src='/js/ticket.js')
+  script(type='module' src="/js/md-editor.js")

@@ -1,0 +1,38 @@
+extends ../layouts/main
+
+include ticketTemplate.pug
+include ../modalTemplate.pug
+
+block content
+  div(class='flex flex-row items-center space-x-4')
+    h1(class='title') Hibajegyek
+    a(href='/tickets/new' class='flex-shrink-0 text-xl btn btn-primary animate-hover') Új hibajegy
+  div(class='p-5 mx-6 mt-4 bg-blue-300 border-l-4 border-blue-500 opacity-75 md:mx-auto md:w-1/2 dark:border-blue-500 dark:bg-blue-700')
+    div(class='text-sm leading-tight text-black dark:text-white font-semibold') Ha bármi problémát észleltél egy tanulószobában, jelezd, hogy meg lehessen oldva!
+  h1(class='subtitle') Saját hibajegyek
+  div(class='grid grid-cols-1 xl:mx-32 lg:grid-cols-2' x-data="app()")
+    each ticket in myTickets
+      +ticketTemplate(ticket, format, DATE_FORMAT, STATUSES, true)
+    else
+      p(class="ml-6") Nincsenek hibajegyeid
+  h1(class='subtitle') Más hibajegyei
+  div(class='grid grid-cols-1 xl:mx-32 lg:grid-cols-2' x-data="app()")
+    each ticket in otherTickets
+      +ticketTemplate(ticket, format, DATE_FORMAT, STATUSES, false)
+    else
+      p(class="ml-6") Nincsenek hibajegyek
+
+  +modalTemplate('',
+    'Biztosan törlöd ezt a hibajegyet?',
+    'Ezt később nem tudod visszavonni!',
+    'Törlés',
+    true)
+
+block scripts
+  script(src='/js/ticket.js')
+  if user
+    script const user = !{JSON.stringify(user)}
+  script.
+    function app() {
+      return { user }
+    }
