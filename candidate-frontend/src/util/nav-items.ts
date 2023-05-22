@@ -1,4 +1,3 @@
-import { UserModel } from '../api/model/user.model'
 import { environment } from './environment'
 
 export interface INavItem {
@@ -6,7 +5,7 @@ export interface INavItem {
   path: string
   external: boolean
   onClick: () => void
-  shouldBeShown: (isLoggedIn: boolean, loggedInUser: UserModel | undefined) => boolean
+  shouldBeShown: (isLoggedIn: boolean) => boolean
 }
 
 export class NavItem implements INavItem {
@@ -15,7 +14,7 @@ export class NavItem implements INavItem {
   public external: boolean
   public onClick: () => void
 
-  public shouldBeShown = (isLoggedIn: boolean, _loggedInUser: UserModel | undefined) => isLoggedIn
+  public shouldBeShown = (isLoggedIn: boolean) => isLoggedIn
 
   constructor({
     label,
@@ -35,12 +34,6 @@ export class NavItem implements INavItem {
   }
 }
 
-const HomeItem = new NavItem({
-  label: 'Kezdőlap',
-  path: '/'
-})
-HomeItem.shouldBeShown = (_isLoggedIn: boolean) => true
-
 const LoginItem = new NavItem({
   label: 'Belépés',
   path: '/login',
@@ -49,4 +42,10 @@ const LoginItem = new NavItem({
 })
 LoginItem.shouldBeShown = (isLoggedIn: boolean) => !isLoggedIn
 
-export const NAV_ITEMS: INavItem[] = [HomeItem, LoginItem]
+const LogoutItem = new NavItem({
+  label: 'Kijelentkezés',
+  path: '/logout'
+})
+LogoutItem.shouldBeShown = (isLoggedIn: boolean) => isLoggedIn
+
+export const NAV_ITEMS: INavItem[] = [LoginItem, LogoutItem]

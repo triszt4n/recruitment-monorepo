@@ -1,3 +1,3 @@
 export const environment = {
-  API_HOST: process.env.REACT_APP_API_HOST || 'http://localhost:3000'
+  API_HOST: import.meta.env.VITE_API_HOST || 'http://localhost:3000'
 }

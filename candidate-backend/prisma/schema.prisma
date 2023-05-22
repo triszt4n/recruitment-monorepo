@@ -12,10 +12,32 @@ datasource db {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  authSchId String  @unique
-  fullName  String
-  firstName String
-  email     String  @unique
-  isAdmin   Boolean @default(false)
+  id             Int      @id @default(autoincrement())
+  authSchId      String   @unique
+  fullName       String
+  firstName      String
+  email          String   @unique
+  isAdmin        Boolean  @default(false)
+  createdPeriods Period[]
+}
+
+model Period {
+  id        Int      @id @default(autoincrement())
+  title     String
+  isActive  Boolean  @default(true)
+  createdBy User     @relation(fields: [userId], references: [id])
+  userId    Int
+  Invite    Invite[]
+}
+
+model Invite {
+  id                Int      @id @default(autoincrement())
+  supposedEmail     String
+  supposedLastName  String
+  supposedFirstName String
+  isEmailSent       Boolean  @default(false)
+  communities       String[]
+  periodId          Int
+  period            Period   @relation(fields: [periodId], references: [id])
+  createdAt         DateTime @default(now())
 }

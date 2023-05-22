@@ -14,3 +14,10 @@ yarn install
 yarn prisma migrate dev
 yarn dev
 ```
+
+Anytime new model is added to the db schema:
+
+```sh
+yarn prisma migrate dev
+yarn prisma generate
+```

@@ -3,7 +3,7 @@ import {
   ExecutionContext,
   InternalServerErrorException,
 } from '@nestjs/common'
-import { JwtUserDto } from 'src/auth/dto/jwtUser.dto'
+import { JwtUserDto } from 'src/auth/dto/JwtUser.dto'
 import { UserEntity } from 'src/users/dto/UserEntity.dto'
 
 type AnyUser = UserEntity | JwtUserDto

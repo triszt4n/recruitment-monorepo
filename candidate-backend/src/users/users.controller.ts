@@ -6,7 +6,7 @@ import {
   ParseIntPipe,
   Post,
 } from '@nestjs/common'
-import { CurrentUser } from 'src/auth/decorator/current-user.decorator'
+import { CurrentUser } from 'src/auth/decorator/currentUser.decorator'
 import { JwtAuth } from 'src/auth/decorator/jwtAuth.decorator'
 import { ApiController } from 'src/utils/apiController.decorator'
 import { UserEntity } from './dto/UserEntity.dto'

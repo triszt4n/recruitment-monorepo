@@ -5,12 +5,12 @@ import { useAuthContext } from '../../api/contexts/auth/useAuthContext'
 import { NAV_ITEMS } from '../../util/nav-items'
 
 const DesktopNav: FC = () => {
-  const { isLoggedIn, loggedInUser } = useAuthContext()
-  const [navItems, setNavItems] = useState(NAV_ITEMS)
+  const { isLoggedIn } = useAuthContext()
+  const [navItems, setNavItems] = useState(NAV_ITEMS.filter((item) => item.shouldBeShown(isLoggedIn)))
 
   useEffect(() => {
-    setNavItems(NAV_ITEMS.filter((item) => item.shouldBeShown(isLoggedIn, loggedInUser)))
-  }, [isLoggedIn, loggedInUser])
+    setNavItems(NAV_ITEMS.filter((item) => item.shouldBeShown(isLoggedIn)))
+  }, [isLoggedIn])
 
   return (
     <Stack direction="row" spacing={4}>

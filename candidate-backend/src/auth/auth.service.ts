@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { User } from '@prisma/client'
 import { UsersService } from '../users/users.service'
-import { OAuthUser } from './oauthuser'
+import { OAuthUser } from './dto/oauthuser.dto'
 
 @Injectable()
 export class AuthService {
