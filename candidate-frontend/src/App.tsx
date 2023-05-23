@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { SLayout } from './components/commons/SLayout'
 import './global.css'
 import { PeriodPage } from './pages/admissions/PeriodPage'
+import { CreateInvitePage } from './pages/admissions/forms/CreateInvitePage'
 import { CreatePeriodPage } from './pages/admissions/forms/CreatePeriodPage'
 import { AuthorizedPage } from './pages/authorized/AuthorizedPage'
 import { ErrorPage } from './pages/error/ErrorPage'
@@ -17,7 +18,10 @@ export const App = () => {
           <Route index element={<IndexPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="periods">
-            <Route path=":id" element={<PeriodPage />} />
+            <Route path=":id">
+              <Route index element={<PeriodPage />} />
+              <Route path="new-invite" element={<CreateInvitePage />} />
+            </Route>
             <Route path="new" element={<CreatePeriodPage />} />
           </Route>
           <Route path="authorized" element={<AuthorizedPage />} />

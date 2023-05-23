@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  automation:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER
+      - N8N_BASIC_AUTH_PASSWORD
+      - N8N_PORT=5678
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+    volumes:
+      - ${DATA_FOLDER}/.n8n:/home/node/.n8n
+  user-service:
+  candidate-service:
+  registration-service:
+  email-service:

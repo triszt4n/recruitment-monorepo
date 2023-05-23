@@ -6,6 +6,15 @@ export interface InviteModel {
   supposedEmail: string
   supposedFirstName: string
   supposedLastName: string
+  needsOralExam: boolean
   isEmailSent: boolean
   communities: CommunityString[]
+}
+
+export interface CreateInviteDto {
+  supposedEmail: string
+  supposedFirstName: string
+  supposedLastName: string
+  communities: CommunityString[]
+  needsOralExam: boolean
 }

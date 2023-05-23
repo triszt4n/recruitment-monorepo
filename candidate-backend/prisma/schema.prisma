@@ -37,6 +37,7 @@ model Invite {
   supposedFirstName String
   isEmailSent       Boolean  @default(false)
   communities       String[]
+  needsOralExam     Boolean  @default(true)
   periodId          Int
   period            Period   @relation(fields: [periodId], references: [id])
   createdAt         DateTime @default(now())

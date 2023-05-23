@@ -1,12 +1,11 @@
 import {
-  ArrayNotEmpty,
   IsArray,
   IsBoolean,
   IsEmail,
-  IsIn,
   IsInt,
   IsNotEmpty,
   IsOptional,
+  IsString,
   Min,
 } from 'class-validator'
 
@@ -38,9 +37,11 @@ export class InviteEntity {
   supposedFirstName: string
 
   @IsArray()
-  @ArrayNotEmpty()
-  @IsIn(CommunityString)
+  @IsString({ each: true, message: 'Each community must be a string' })
   communities: string[]
+
+  @IsBoolean()
+  needsOralExam = true
 
   @IsBoolean()
   @IsOptional()

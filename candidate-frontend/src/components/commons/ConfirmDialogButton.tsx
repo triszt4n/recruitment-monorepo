@@ -19,7 +19,7 @@ interface ConfirmDialogButtonProps {
   buttonColorScheme?: string
   confirmButtonText?: string
   refuseButtonText?: string
-  confirmAction: () => void
+  confirmAction: () => Promise<void>
 }
 
 export const ConfirmDialogButton = ({
@@ -61,7 +61,14 @@ export const ConfirmDialogButton = ({
             <Button ref={cancelRef} onClick={onClose}>
               {refuseButtonText}
             </Button>
-            <Button colorScheme={buttonColorScheme} ml={3} onClick={confirmAction}>
+            <Button
+              colorScheme={buttonColorScheme}
+              ml={3}
+              onClick={async () => {
+                confirmAction()
+                onClose()
+              }}
+            >
               {confirmButtonText}
             </Button>
           </AlertDialogFooter>

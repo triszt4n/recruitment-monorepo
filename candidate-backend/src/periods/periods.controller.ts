@@ -84,4 +84,14 @@ export class PeriodsController {
   ): Promise<InviteEntity> {
     return this.invitesService.create(dto, periodId)
   }
+
+  @JwtAuth()
+  @Post(':periodId/invites/send')
+  async sendUnsentInvites(
+    @Param('periodId', ParseIntPipe) periodId: number,
+  ): Promise<InviteEntity[]> {
+    const sendables = await this.invitesService.findAllUnsentOfPeriod(periodId)
+    await this.invitesService.sendInvitesViaMailingService(sendables)
+    return sendables
+  }
 }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { InviteModel } from '../model/invite.model'
+import { CreateInviteDto, InviteModel } from '../model/invite.model'
 import { PeriodModel } from '../model/period.model'
 
 export class PeriodModule {
@@ -30,6 +30,16 @@ export class PeriodModule {
 
   async getInvites(periodId: string) {
     const response = await axios.get<InviteModel[]>(`/periods/${periodId}/invites`)
+    return response.data
+  }
+
+  async createInvite(data: { periodId: string; dto: CreateInviteDto }) {
+    const response = await axios.post<InviteModel>(`/periods/${data.periodId}/invites`, data.dto)
+    return response.data
+  }
+
+  async sendInvites(periodId: string) {
+    const response = await axios.post(`/periods/${periodId}/invites/send`)
     return response.data
   }
 }
