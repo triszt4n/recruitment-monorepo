@@ -1,19 +1,20 @@
 import { Module } from '@nestjs/common'
 import { EventEmitterModule } from '@nestjs/event-emitter'
 import { ScheduleModule } from '@nestjs/schedule'
-import { AuthModule } from './auth/auth.module'
-import { PeriodsModule } from './periods/periods.module'
+import { MailingModule } from './mailing/mailing.module'
+import { MailingService } from './mailing/mailing.service'
 import { PrismaModule } from './prisma/prisma.module'
-import { UsersModule } from './users/users.module'
 
 @Module({
   imports: [
-    UsersModule,
     PrismaModule,
-    AuthModule,
     ScheduleModule.forRoot(),
     EventEmitterModule.forRoot(),
-    PeriodsModule,
+    MailingModule.forRoot({
+      mailServerUrl: process.env.MAIL_SERVER_URL,
+      apiKey: process.env.MAIL_API_KEY,
+    }),
   ],
+  providers: [MailingService],
 })
 export class AppModule {}
