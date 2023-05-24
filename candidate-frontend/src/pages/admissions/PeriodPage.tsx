@@ -1,14 +1,17 @@
 import { CheckCircleIcon, PlusSquareIcon } from '@chakra-ui/icons'
-import { Box, Button, HStack, Heading, Spacer, Spinner, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, HStack, Heading, Spacer, Spinner, Text, VStack, useToast } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PeriodModule } from '../../api/modules/period.module'
 import { ConfirmDialogButton } from '../../components/commons/ConfirmDialogButton'
 import { PageHeading } from '../../components/commons/PageHeading'
+import { queryClient } from '../../util/query-client'
 import { InvitationTable } from './components/InvitationTable'
 
 export const PeriodPage = () => {
+  const toast = useToast()
+
   const { id: periodId } = useParams()
   const navigate = useNavigate()
   const { data: period, isLoading: isLoading1 } = useQuery(['periods', periodId], () => PeriodModule.getInstance().getPeriod(periodId!!))
@@ -17,9 +20,24 @@ export const PeriodPage = () => {
   )
 
   const sendEmailsButtonRef = useRef<HTMLButtonElement>(null)
-  const onClickSendInvites = async () => {
-    await PeriodModule.getInstance().sendInvites(periodId!!)
-    await navigate(`/periods/${periodId}`)
+  const onClickSendInvites = () => {
+    toast({
+      title: 'Meghívók kiküldése',
+      description: `Emailek küldés alatt...`,
+      status: 'info',
+      isClosable: true
+    })
+    PeriodModule.getInstance()
+      .sendInvites(periodId!!)
+      .then((invites) => {
+        toast({
+          title: 'Meghívók kiküldése',
+          description: `Sikeresen kiküldve ${invites!!.length} meghívó.`,
+          status: 'success',
+          isClosable: true
+        })
+        queryClient.invalidateQueries(['periods', periodId, 'invites'])
+      })
   }
 
   if (isLoading1 || isLoading2) {

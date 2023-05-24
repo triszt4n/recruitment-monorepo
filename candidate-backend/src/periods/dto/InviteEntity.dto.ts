@@ -47,6 +47,10 @@ export class InviteEntity {
   @IsOptional()
   isEmailSent: boolean
 
+  @IsBoolean()
+  @IsOptional()
+  isAccepted: boolean
+
   constructor(partial: Partial<InviteEntity>) {
     Object.assign(this, partial)
   }

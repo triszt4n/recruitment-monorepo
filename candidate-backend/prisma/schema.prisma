@@ -41,4 +41,5 @@ model Invite {
   periodId          Int
   period            Period   @relation(fields: [periodId], references: [id])
   createdAt         DateTime @default(now())
+  isAccepted        Boolean  @default(false)
 }

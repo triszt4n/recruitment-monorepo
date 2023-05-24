@@ -19,7 +19,7 @@ interface ConfirmDialogButtonProps {
   buttonColorScheme?: string
   confirmButtonText?: string
   refuseButtonText?: string
-  confirmAction: () => Promise<void>
+  confirmAction: () => void
 }
 
 export const ConfirmDialogButton = ({

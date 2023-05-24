@@ -1,0 +1,72 @@
+{
+  "name": "registration-frontend",
+  "description": "Simonyi felvételi admin frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/icons": "2.0.19",
+    "@chakra-ui/react": "2.6.1",
+    "@chakra-ui/system": "2.5.7",
+    "@chakra-ui/theme-tools": "2.0.16",
+    "@emotion/react": "11.11.0",
+    "@emotion/styled": "11.11.0",
+    "axios": "1.4.0",
+    "framer-motion": "10.12.12",
+    "js-cookie": "3.0.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.43.9",
+    "react-query": "3.39.3",
+    "react-router-dom": "6.11.2",
+    "web-vitals": "3.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.1",
+    "@types/js-cookie": "3.0.3",
+    "@types/node": "18.16.0",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "@typescript-eslint/eslint-plugin": "5.59.6",
+    "@typescript-eslint/parser": "5.59.6",
+    "@vitejs/plugin-react": "4.0.0",
+    "eslint": "8.40.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.8.8",
+    "typescript": "5.0.4",
+    "vite": "4.3.7",
+    "vite-plugin-svgr": "3.2.0",
+    "vite-tsconfig-paths": "4.2.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "test": "vite test",
+    "fix": "run-s \"fix:*\"",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint": "run-p \"lint:*\"",
+    "lint:eslint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check --ignore-path .gitignore .",
+    "lint:typescript": "tsc"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "yarn@3.5.0"
+}

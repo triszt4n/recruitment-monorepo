@@ -1,10 +1,15 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 import { MailingService } from './mailing/mailing.service'
 import { InviteEntity } from './types/InviteEntity'
 
 @Controller()
 export class AppController {
   constructor(private readonly mailingService: MailingService) {}
+
+  @Get()
+  getHello(): string {
+    return "Hello, I'm the backend!"
+  }
 
   @Post('send-invites')
   async sendInvites(
@@ -16,7 +21,8 @@ export class AppController {
         const templateValue = {
           firstName: invite.supposedFirstName,
           periodTitle,
-          link: ``,
+          loginLink: `http://localhost:4003/login`,
+          registerLink: `http://localhost:4003/register/${invite.id}`,
         }
         const generatedHtml = this.mailingService.generateMail(
           templateValue,

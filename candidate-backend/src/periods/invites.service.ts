@@ -41,8 +41,16 @@ export class InvitesService {
 
   async sendInvitesViaMailingService(
     sendables: InviteEntity[],
+    periodTitle: string,
   ): Promise<InviteEntity[]> {
-    await axios.post(process.env.MAIL_SERVER_URL, sendables)
+    try {
+      await axios.post(process.env.MAIL_SERVER_URL, {
+        invites: sendables,
+        periodTitle: periodTitle,
+      })
+    } catch (error) {
+      console.log(error)
+    }
     return sendables
   }
 
@@ -61,6 +69,20 @@ export class InvitesService {
       },
       data: dto,
     })
+  }
+
+  async updateMany(ids: number[], sentStatus = true): Promise<number> {
+    const updated = await this.prisma.invite.updateMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+      data: {
+        isEmailSent: sentStatus,
+      },
+    })
+    return updated.count
   }
 
   async remove(id: number): Promise<InviteEntity> {

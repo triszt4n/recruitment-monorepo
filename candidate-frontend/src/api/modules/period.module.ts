@@ -39,7 +39,7 @@ export class PeriodModule {
   }
 
   async sendInvites(periodId: string) {
-    const response = await axios.post(`/periods/${periodId}/invites/send`)
+    const response = await axios.post<InviteModel[]>(`/periods/${periodId}/invites/send`)
     return response.data
   }
 }

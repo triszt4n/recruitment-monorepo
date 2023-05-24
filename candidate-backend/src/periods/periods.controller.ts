@@ -45,7 +45,6 @@ export class PeriodsController {
     return this.periodsService.findAll()
   }
 
-  @JwtAuth()
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<PeriodEntity> {
     return this.periodsService.findOne(id)
@@ -91,7 +90,12 @@ export class PeriodsController {
     @Param('periodId', ParseIntPipe) periodId: number,
   ): Promise<InviteEntity[]> {
     const sendables = await this.invitesService.findAllUnsentOfPeriod(periodId)
-    await this.invitesService.sendInvitesViaMailingService(sendables)
+    const { title } = await this.periodsService.findOne(periodId)
+    await this.invitesService.sendInvitesViaMailingService(sendables, title)
+    await this.invitesService.updateMany(
+      sendables.map((s) => s.id),
+      true,
+    )
     return sendables
   }
 }
