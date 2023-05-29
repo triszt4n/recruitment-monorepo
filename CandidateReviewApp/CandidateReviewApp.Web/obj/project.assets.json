@@ -971,6 +971,19 @@
             "rid": "win"
           }
         }
+      },
+      "CandidateReviewApp.Dal/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.8"
+        },
+        "compile": {
+          "bin/placeholder/CandidateReviewApp.Dal.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CandidateReviewApp.Dal.dll": {}
+        }
       }
     }
   },
@@ -2572,10 +2585,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "CandidateReviewApp.Dal/1.0.0": {
+      "type": "project",
+      "path": "../CandidateReviewApp.Dal/CandidateReviewApp.Dal.csproj",
+      "msbuildProject": "../CandidateReviewApp.Dal/CandidateReviewApp.Dal.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "CandidateReviewApp.Dal >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.8",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.8",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.8",
@@ -2611,7 +2630,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Work\\recruitment-monorepo\\CandidateReviewApp\\CandidateReviewApp.Dal\\CandidateReviewApp.Dal.csproj": {
+              "projectPath": "C:\\Work\\recruitment-monorepo\\CandidateReviewApp\\CandidateReviewApp.Dal\\CandidateReviewApp.Dal.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

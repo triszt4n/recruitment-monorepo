@@ -53,7 +53,6 @@ C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.AssemblyInfoInputs.cache
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.AssemblyInfo.cs
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.csproj.CoreCompileInputs.cache
-C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.RazorAssemblyInfo.cache
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.RazorAssemblyInfo.cs
@@ -69,3 +68,5 @@ C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\CandidateReviewApp.Web.genruntimeconfig.cache
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\obj\Debug\net6.0\ref\CandidateReviewApp.Web.dll
 C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\bin\Debug\net6.0\CandidateReviewApp.Dal.dll
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Web\bin\Debug\net6.0\CandidateReviewApp.Dal.pdb

@@ -1,0 +1,12 @@
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.csproj.AssemblyReference.cache
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.AssemblyInfoInputs.cache
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.AssemblyInfo.cs
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.csproj.CoreCompileInputs.cache
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\bin\Debug\net6.0\CandidateReviewApp.Dal.deps.json
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\bin\Debug\net6.0\CandidateReviewApp.Dal.dll
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\bin\Debug\net6.0\CandidateReviewApp.Dal.pdb
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.dll
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\refint\CandidateReviewApp.Dal.dll
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\CandidateReviewApp.Dal.pdb
+C:\Work\recruitment-monorepo\CandidateReviewApp\CandidateReviewApp.Dal\obj\Debug\net6.0\ref\CandidateReviewApp.Dal.dll

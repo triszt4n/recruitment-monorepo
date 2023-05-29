@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateReviewApp.Web", "CandidateReviewApp.Web\CandidateReviewApp.Web.csproj", "{CE1C3AC3-8393-49EA-AA7A-093400894999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateReviewApp.Web", "CandidateReviewApp.Web\CandidateReviewApp.Web.csproj", "{CE1C3AC3-8393-49EA-AA7A-093400894999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateReviewApp.Dal", "CandidateReviewApp.Dal\CandidateReviewApp.Dal.csproj", "{ED55F643-D60C-4E24-8C89-A7F3F585F3D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CE1C3AC3-8393-49EA-AA7A-093400894999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE1C3AC3-8393-49EA-AA7A-093400894999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE1C3AC3-8393-49EA-AA7A-093400894999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED55F643-D60C-4E24-8C89-A7F3F585F3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED55F643-D60C-4E24-8C89-A7F3F585F3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED55F643-D60C-4E24-8C89-A7F3F585F3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED55F643-D60C-4E24-8C89-A7F3F585F3D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
