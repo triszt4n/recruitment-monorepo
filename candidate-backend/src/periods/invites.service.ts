@@ -43,15 +43,18 @@ export class InvitesService {
     sendables: InviteEntity[],
     periodTitle: string,
   ): Promise<InviteEntity[]> {
+    let successfulInviteIds: number[] = []
     try {
-      await axios.post(process.env.MAIL_SERVER_URL, {
-        invites: sendables,
-        periodTitle: periodTitle,
-      })
+      successfulInviteIds = (
+        await axios.post<number[]>(process.env.MAIL_SERVER_URL, {
+          invites: sendables,
+          periodTitle: periodTitle,
+        })
+      ).data
     } catch (error) {
       console.log(error)
     }
-    return sendables
+    return sendables.filter((invite) => successfulInviteIds.includes(invite.id))
   }
 
   async findOne(id: number): Promise<InviteEntity> {

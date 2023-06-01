@@ -14,10 +14,10 @@ export class AppController {
   @Post('send-invites')
   async sendInvites(
     @Body() body: { periodTitle: string; invites: InviteEntity[] },
-  ): Promise<void> {
+  ): Promise<number[]> {
     const { invites, periodTitle } = body
-    await Promise.all(
-      invites.map((invite) => {
+    const successfulEmails = await Promise.all(
+      invites.map(async (invite) => {
         const templateValue = {
           firstName: invite.supposedFirstName,
           periodTitle,
@@ -28,12 +28,14 @@ export class AppController {
           templateValue,
           'candidate',
         )
-        return this.mailingService.sendMail({
+        const wasSuccessful = await this.mailingService.sendMail({
           to: invite.supposedEmail,
           subject: 'Szakkollégiumi Felvételi',
           html: generatedHtml,
         })
+        return wasSuccessful ? invite.id : null
       }),
     )
+    return successfulEmails.filter(Boolean)
   }
 }

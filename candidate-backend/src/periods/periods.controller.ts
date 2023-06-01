@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  InternalServerErrorException,
   Param,
   ParseIntPipe,
   Patch,
@@ -91,11 +92,16 @@ export class PeriodsController {
   ): Promise<InviteEntity[]> {
     const sendables = await this.invitesService.findAllUnsentOfPeriod(periodId)
     const { title } = await this.periodsService.findOne(periodId)
-    await this.invitesService.sendInvitesViaMailingService(sendables, title)
+    const successfulInvites =
+      await this.invitesService.sendInvitesViaMailingService(sendables, title)
     await this.invitesService.updateMany(
-      sendables.map((s) => s.id),
+      successfulInvites.map((s) => s.id),
       true,
     )
+    if (successfulInvites.length != sendables.length)
+      throw new InternalServerErrorException(
+        'Nem lehetett minden emailt kiküldeni!',
+      )
     return sendables
   }
 }

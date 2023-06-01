@@ -1,0 +1,104 @@
+version: '3'
+
+services:
+  automation:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    ports:
+      - '5678:5678'
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER
+      - N8N_BASIC_AUTH_PASSWORD
+      - N8N_PORT=5678
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+    volumes:
+      - ${DATA_FOLDER}/.n8n:/home/node/.n8n
+    networks:
+      - candidate-network
+  candidate-db:
+    image: postgres:13.10
+    env_file:
+      - ./candidate-backend/.env
+    volumes:
+      - candidate_db_folder:/var/lib/postgresql/data
+    networks:
+      - candidate-network
+  registration-db:
+    image: postgres:13.10
+    env_file:
+      - ./registration-backend/.env
+    volumes:
+      - registration_db_folder:/var/lib/postgresql/data
+    networks:
+      - candidate-network
+  candidate-service:
+    depends_on:
+      - candidate-db
+    build: ./candidate-backend
+    command: sh -c "rm -f tmp/pids/server.pid && npm run start:prod"
+    ports:
+      - 3001:3001
+    env_file:
+      - ./candidate-backend/.env
+    volumes:
+      - candidate_static_folder:/usr/src/app/static
+    networks:
+      - candidate-network
+    restart: always
+  registration-service:
+    depends_on:
+      - candidate-db
+    build: ./registration-backend
+    command: sh -c "rm -f tmp/pids/server.pid && npm run start:prod"
+    ports:
+      - 3003:3003
+    env_file:
+      - ./registration-backend/.env
+    volumes:
+      - registration_static_folder:/usr/src/app/static
+    networks:
+      - candidate-network
+    restart: always
+  email-service:
+    depends_on:
+      - automation
+    build: ./email-backend
+    command: sh -c "rm -f tmp/pids/server.pid && npm run start:prod"
+    ports:
+      - 3004:3004
+    env_file:
+      - ./email-backend/.env
+    volumes:
+      - email_static_folder:/usr/src/app/static
+    networks:
+      - candidate-network
+    restart: always
+  candidate-front:
+    depends_on:
+      - candidate-service
+    build: ./candidate-frontend
+    ports:
+      - 4001:4001
+    env_file:
+      - ./candidate-frontend/.env
+    networks:
+      - candidate-network
+  registration-front:
+    depends_on:
+      - registration-service
+    build: ./registration-frontend
+    ports:
+      - 4003:4003
+    env_file:
+      - ./registration-frontend/.env
+    networks:
+      - candidate-network
+networks:
+  candidate-network:
+volumes:
+  candidate_db_folder:
+  registration_db_folder:
+  candidate_static_folder:
+  registration_static_folder:
+  email_static_folder:
