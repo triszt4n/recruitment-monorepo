@@ -9,8 +9,8 @@ export class AuthService {
   private readonly logger = new Logger(AuthService.name)
 
   constructor(
-    private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly usersService: UsersService,
   ) {}
 
   async findOrCreateUser(oAuthUser: OAuthUser): Promise<User> {
