@@ -3,8 +3,8 @@ import {
   ExecutionContext,
   InternalServerErrorException,
 } from '@nestjs/common'
-import { JwtUserDto } from 'src/auth/dto/JwtUser.dto'
-import { UserEntity } from 'src/users/dto/UserEntity.dto'
+import { UserEntity } from '../../users/dto/UserEntity.dto'
+import { JwtUserDto } from '../dto/jwtUser.dto'
 
 type AnyUser = UserEntity | JwtUserDto
 
@@ -26,7 +26,7 @@ export const CurrentUser = createParamDecorator<keyof AnyUser | undefined>(
 
     if (key && !user.hasOwnProperty(key)) {
       throw new InternalServerErrorException(
-        `Unknown key ${key} in CurrentUser decorator`,
+        `Unknown key ${key.toString()} in CurrentUser decorator`,
       )
     }
 
@@ -47,7 +47,7 @@ export const CurrentUserOptional = createParamDecorator<
     const user: AnyUser = context.switchToHttp().getRequest().user
     if (key && !user?.hasOwnProperty(key)) {
       throw new InternalServerErrorException(
-        `Unknown key ${key} in CurrentUser decorator`,
+        `Unknown key ${key.toString()} in CurrentUser decorator`,
       )
     }
 

@@ -5,7 +5,7 @@ import { ApiController } from 'src/utils/apiController.decorator'
 import { AuthService } from './auth.service'
 import { CurrentUser } from './decorator/currentUser.decorator'
 import { JwtAuth } from './decorator/jwtAuth.decorator'
-import { JwtUserDto } from './dto/JwtUser.dto'
+import { JwtUserDto } from './dto/jwtUser.dto'
 
 @ApiController('auth')
 export class AuthController {

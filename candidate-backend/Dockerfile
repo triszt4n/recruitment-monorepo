@@ -1,6 +1,4 @@
 ###################
-# BUILD FOR LOCAL DEVELOPMENT
-###################
 
 FROM node:18 As development
 
@@ -33,6 +31,8 @@ COPY --from=development /usr/src/app/node_modules ./node_modules
 
 COPY . .
 
+RUN npx prisma generate
+
 # Run the build command which creates the production bundle
 RUN npm run build
 
@@ -53,5 +53,6 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist ./dist
 COPY --from=build /usr/src/app/package.json ./
+COPY --from=build /usr/src/app/prisma ./prisma
 
 CMD npm run start:prod
