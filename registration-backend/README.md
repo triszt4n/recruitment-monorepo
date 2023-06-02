@@ -12,7 +12,7 @@
 ```sh
 yarn install
 yarn prisma migrate dev
-dapr run --app-id candidate-backend --app-protocol http --dapr-http-port 3600 -- npm run dev
+dapr run --app-id registration-backend --app-protocol http --app-port 5600 --dapr-http-port 3600 --resources-path ../components -- npm run dev
 ```
 
 Anytime new model is added to the db schema:

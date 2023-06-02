@@ -1,4 +1,3 @@
-import { CommunicationProtocolEnum, DaprClient, HttpMethod } from '@dapr/dapr'
 import {
   BadRequestException,
   Body,
@@ -11,6 +10,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common'
+import axios from 'axios'
 import { CandidatesService } from './candidates.service'
 import { CandidateData } from './dto/CandidateData.dto'
 import { CandidateEntity } from './dto/CandidateEntity.dto'
@@ -24,19 +24,12 @@ export class CandidatesController {
   constructor(private readonly candidatesService: CandidatesService) {}
 
   private readonly logger = new Logger(CandidatesController.name)
-  private readonly daprClient = new DaprClient({
-    daprHost: process.env.DAPR_HOST,
-    daprPort: process.env.DAPR_HTTP_PORT,
-    communicationProtocol: CommunicationProtocolEnum.HTTP,
-  })
 
   @Post()
   async create(@Body() dto: CreateCandidateDto): Promise<CandidateEntity> {
     try {
-      await this.daprClient.invoker.invoke(
-        'candidate-backend',
-        `invites/${dto.inviteId}/accept`,
-        HttpMethod.POST,
+      await axios.post<InviteEntity>(
+        `${process.env.CANDIDATE_BACKEND_HOST}/invites/${dto.inviteId}/accept`,
       )
     } catch (error) {
       this.logger.error(error)
@@ -71,18 +64,12 @@ export class CandidatesController {
   ): Promise<CandidateData> {
     const candidate = await this.candidatesService.findOne(id)
 
-    const invite = (await this.daprClient.invoker.invoke(
-      'candidate-backend',
-      `invites/${candidate.inviteId}`,
-      HttpMethod.GET,
-    )) as InviteEntity
-
-    const period = (await this.daprClient.invoker.invoke(
-      'candidate-backend',
-      `periods/${invite.periodId}`,
-      HttpMethod.GET,
-    )) as PeriodEntity
-
+    const { data: invite } = await axios.get<InviteEntity>(
+      `${process.env.CANDIDATE_BACKEND_HOST}/invites/${candidate.inviteId}`,
+    )
+    const { data: period } = await axios.get<PeriodEntity>(
+      `${process.env.CANDIDATE_BACKEND_HOST}/periods/${invite.periodId}`,
+    )
     return new CandidateData({ candidate, invite, period })
   }
 

@@ -24,6 +24,7 @@
   "dependencies": {
     "@casl/ability": "6.5.0",
     "@casl/prisma": "1.4.0",
+    "@dapr/dapr": "^3.0.0",
     "@nestjs/axios": "2.0.0",
     "@nestjs/common": "9.4.2",
     "@nestjs/core": "9.4.2",
